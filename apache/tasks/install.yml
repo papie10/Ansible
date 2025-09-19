@@ -1,0 +1,42 @@
+---
+- name: Install and Configure Web Server
+  hosts: G1
+  become: yes
+
+  tasks:
+    - name: Install HTTPD on Amazon Linux or RedHat
+      yum:
+        name: httpd
+        state: present
+      when: ansible_distribution == "Amazon" or ansible_distribution == "RedHat"
+
+    - name: Start HTTPD on Amazon Linux or RedHat
+      service:
+        name: httpd
+        state: started
+      when: ansible_distribution == "Amazon" or ansible_distribution == "RedHat"
+
+    - name: Enable HTTPD on Amazon Linux or RedHat
+      service:
+        name: httpd
+        enabled: yes
+      when: ansible_distribution == "Amazon" or ansible_distribution == "RedHat"
+
+    - name: Install Apache2 on Ubuntu or Debian
+      apt:
+        name: apache2
+        state: present
+      when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+    - name: Start Apache2 on Ubuntu or Debian
+      service:
+        name: apache2
+        state: started
+      when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+    - name: Enable Apache2 on Ubuntu or Debian
+      service:
+        name: apache2
+        enabled: yes
+      when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+...
