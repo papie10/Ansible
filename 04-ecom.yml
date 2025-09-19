@@ -1,0 +1,28 @@
+---
+- name: Deploy Web App
+  hosts: n1
+  become: yes
+
+  tasks:
+    - name: Install Git
+      yum:
+        name: git
+        state: present
+
+    - name: Install Apache HTTPD
+      yum:
+        name: httpd
+        state: present
+
+    - name: Ensure Apache is running
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Deploy Web App from GitHub
+      git:
+        repo: https://github.com/CeeyIT-Solutions/ecomm-3.git
+        dest: /var/www/html
+        version: master
+...
