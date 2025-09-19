@@ -1,6 +1,6 @@
 ---
 - name: Install HTTP server across all nodes
-  hosts: g1
+  hosts: G1
   become: yes
 
   tasks:
