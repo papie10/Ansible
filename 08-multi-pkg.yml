@@ -1,0 +1,43 @@
+---
+- name: Install HTTP server across all nodes
+  hosts: g1
+  become: yes
+
+  tasks:
+    - name: Install HTTPD (Amazon Linux / RedHat)
+      yum:
+        name: httpd
+        state: present
+      when: ansible_distribution in ["Amazon", "RedHat"]
+
+    - name: Start httpd
+      service:
+        name: httpd
+        state: started
+      when: ansible_distribution in ["Amazon", "RedHat"]
+
+    - name: Enable httpd
+      service:
+        name: httpd
+        enabled: yes
+      when: ansible_distribution in ["Amazon", "RedHat"]
+
+    - name: Install Apache2 (Ubuntu / Debian)
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      when: ansible_distribution in ["Ubuntu", "Debian"]
+
+    - name: Start apache2
+      service:
+        name: apache2
+        state: started
+      when: ansible_distribution in ["Ubuntu", "Debian"]
+
+    - name: Enable apache2
+      service:
+        name: apache2
+        enabled: yes
+      when: ansible_distribution in ["Ubuntu", "Debian"]
+...
