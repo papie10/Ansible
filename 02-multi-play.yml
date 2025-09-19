@@ -1,0 +1,71 @@
+---
+- name: Update n1 (Amazon Linux)
+  hosts: n1
+
+  tasks:
+    - name: Create Directory 
+      file:
+        path: /home/ec2-user/new_dir
+        state: directory
+
+    - name: Create Directory 
+      file:
+        path: /home/ec2-user/new_dir_1
+        state: directory      
+
+- name: Update n2 (Ubuntu)
+  hosts: n2
+
+  tasks:
+    - name: Create Directory 
+      file:
+        path: /home/ubuntu/new_dir_1
+        state: directory
+
+    - name: Create Directory 
+      file:
+        path: /home/ubuntu/new_dir_2
+        state: directory      
+
+- name: Update n3 (Debian)
+  hosts: n3
+
+  tasks:
+    - name: Create Directory 
+      file:
+        path: /home/admin/new_dir_1
+        state: directory
+
+    - name: Create Directory 
+      file:
+        path: /home/admin/new_dir_2
+        state: directory      
+
+- name: Update n4 (Red Hat)
+  hosts: n4
+
+  tasks:
+    - name: Create Directory 
+      file:
+        path: /home/ec2-user/new_dir_1
+        state: directory
+
+    - name: Create Directory 
+      file:
+        path: /home/ec2-user/new_dir_2
+        state: directory      
+
+- name: Update all servers in G1
+  hosts: G1
+
+  tasks:
+    - name: Create Directory 
+      file:
+        path: /tmp/new_dir_group1
+        state: directory
+
+    - name: Create Directory 
+      file:
+        path: /tmp/new_dir_group2
+        state: directory      
+...
